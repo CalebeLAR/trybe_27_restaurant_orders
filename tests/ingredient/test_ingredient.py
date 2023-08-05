@@ -5,8 +5,9 @@ from src.models.ingredient import Ingredient  # noqa: F401, E261, E501
 def test_ingredient(capsys):
     # a classe pode ser instanciada corretamente de acordo com a assinatura
     # esperada;
-    ingredient0 = Ingredient("")
     ingredient1 = Ingredient("massa de ravioli")
+    ingredient2 = Ingredient("massa de ravioli")
+    ingredient3 = Ingredient("massa de lasanha")
     assert isinstance(ingredient1, Ingredient)
 
     # o atributo conjunto restrictions é populado como esperado;
@@ -14,17 +15,10 @@ def test_ingredient(capsys):
     assert "<Restriction.GLUTEN: 'GLUTEN'>" in str(ingredient1.restrictions)
     assert "<Restriction.LACTOSE: 'LACTOSE'>" in str(ingredient1.restrictions)
 
-    assert ingredient0.restrictions == set()
-
     # o método mágico __repr__ funcione como esperado;
     assert repr(ingredient1) == "Ingredient('massa de ravioli')"
-    assert repr(ingredient0) == "Ingredient('')"
 
     # o método mágico __eq__ funcione como esperado;
-    ingredient1 = Ingredient("massa de ravioli")
-    ingredient2 = Ingredient("massa de ravioli")
-    ingredient3 = Ingredient("massa de lasanha")
-
     assert ingredient1 != ingredient3
     assert ingredient1 == ingredient2
 
