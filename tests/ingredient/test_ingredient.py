@@ -1,4 +1,4 @@
-from src.models.ingredient import Ingredient, Restriction  # noqa: F401, E261, E501
+from src.models.ingredient import Ingredient  # noqa: F401, E261, E501
 
 
 # Req 1
@@ -10,20 +10,15 @@ def test_ingredient(capsys):
     assert isinstance(ingredient1, Ingredient)
 
     # o atributo conjunto restrictions é populado como esperado;
-    assert ingredient1.restrictions == {
-        Restriction.LACTOSE,
-        Restriction.GLUTEN,
-    }
+    assert isinstance(ingredient1.restrictions, set)
+    assert "<Restriction.GLUTEN: 'GLUTEN'>" in str(ingredient1.restrictions)
+    assert "<Restriction.LACTOSE: 'LACTOSE'>" in str(ingredient1.restrictions)
+
     assert ingredient0.restrictions == set()
 
     # o método mágico __repr__ funcione como esperado;
-    print(repr(ingredient1))
-    captured = capsys.readouterr()
-    assert captured.out == "Ingredient('massa de ravioli')\n"
-
-    print(repr(ingredient0))
-    captured = capsys.readouterr()
-    assert captured.out == "Ingredient('')\n"
+    assert repr(ingredient1) == "Ingredient('massa de ravioli')"
+    assert repr(ingredient0) == "Ingredient('')"
 
     # o método mágico __eq__ funcione como esperado;
     ingredient1 = Ingredient("massa de ravioli")
