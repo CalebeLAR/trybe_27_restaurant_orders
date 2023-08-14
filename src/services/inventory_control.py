@@ -1,8 +1,9 @@
 from csv import DictReader
 from typing import Dict
 
-from src.models.dish import Recipe
-from src.models.ingredient import Ingredient
+# retirei o 'src.' das importaçoes pois estava dando erro
+from models.dish import Recipe
+from models.ingredient import Ingredient
 
 BASE_INVENTORY = "data/inventory_base_data.csv"
 
