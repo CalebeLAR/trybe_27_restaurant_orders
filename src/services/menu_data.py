@@ -17,7 +17,6 @@ class MenuData:
         with open(self.source_path) as menu_data_file:
             menu_data = csv.reader(menu_data_file)
             header, *menu_data = menu_data
-            menu_data
 
             # insere cada para pelo nome no set dishes
             for menu in menu_data:
