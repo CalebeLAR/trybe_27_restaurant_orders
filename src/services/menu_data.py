@@ -18,18 +18,19 @@ class MenuData:
             menu_data = csv.reader(menu_data_file)
             header, *menu_data = menu_data
 
-            # insere cada para pelo nome no set dishes
+            # monta cada prato e seus ingredientes do menu
             for menu in menu_data:
                 dish, price, ingredient, amount = menu
 
                 dish = Dish(dish, float(price))
                 ingredient = Ingredient(ingredient)
 
-                # adiciona o prato vazio em dish caso ja não esteja lá
+                # adiciona o prato vazio na lista de pratos caso não esteja 
+                # listado
                 if dish not in self.dishes:
                     self.dishes.add(dish)
 
-                # adiona um ingrediente para cada prato vazio em self.dishes
+                # adiciona um ingrediente para cada prato vazio em self.dishes
                 for dish_already_added in self.dishes:
                     if dish_already_added.name == dish.name:
                         dish_already_added.add_ingredient_dependency(
