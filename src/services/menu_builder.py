@@ -34,6 +34,7 @@ class MenuBuilder:
         for dish in self.menu_data.dishes:
             restrictions = dish.get_restrictions()
 
+            # verifica se tem em estoque a quantidade do ingrediente
             is_availability = self.inventory.check_recipe_availability(
                 dish.recipe
             )
