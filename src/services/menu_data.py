@@ -11,7 +11,7 @@ class MenuData:
         self.assemble_dishes_from_the_menu()
 
     def assemble_dishes_from_the_menu(self):
-        """ le o arquivo e insere no set dishes todos os pratos montados ja com
+        """le o arquivo e insere no set dishes todos os pratos montados ja com
         seus ingredientes"""
 
         with open(self.source_path) as menu_data_file:
@@ -25,7 +25,7 @@ class MenuData:
                 dish = Dish(dish, float(price))
                 ingredient = Ingredient(ingredient)
 
-                # adiciona o prato vazio na lista de pratos caso não esteja 
+                # adiciona o prato vazio na lista de pratos caso não esteja
                 # listado
                 if dish not in self.dishes:
                     self.dishes.add(dish)
