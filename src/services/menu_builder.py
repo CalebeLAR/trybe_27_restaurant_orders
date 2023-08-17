@@ -52,7 +52,3 @@ class MenuBuilder:
 
         return menu
 
-
-menuBuilder = MenuBuilder()
-menu = menuBuilder.get_main_menu('ANIMAL_MEAT')
-print(menu)
