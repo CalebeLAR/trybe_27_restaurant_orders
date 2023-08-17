@@ -26,11 +26,20 @@ class MenuBuilder:
 
     # Req 4
     def get_main_menu(self, restriction=None) -> List[Dict]:
+        """recebe uma restrição alimentar e monta um menu só com os pratos que
+        não possuem essa restrição"""
         menu = []
+
+        # itera sobre todos os pratos do menu separando suas restições
         for dish in self.menu_data.dishes:
             restrictions = dish.get_restrictions()
 
-            if str(restriction) not in str(restrictions):
+            is_availability = self.inventory.check_recipe_availability(
+                dish.recipe
+            )
+
+            # inclui o prato caso ele não possua a restrição
+            if str(restriction) not in str(restrictions) and is_availability:
                 menu.append(
                     {
                         "dish_name": dish.name,
@@ -41,3 +50,8 @@ class MenuBuilder:
                 )
 
         return menu
+
+
+menuBuilder = MenuBuilder()
+menu = menuBuilder.get_main_menu('ANIMAL_MEAT')
+print(menu)
